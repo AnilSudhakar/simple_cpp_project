@@ -6,7 +6,7 @@ class SimpleCPPConan(ConanFile):
     version = "0.0.1"
     settings = "os", "compiler", "build_type", "arch"
     generators = "CMakeDeps", "CMakeToolchain"
-    default_options = {"gtest:shared": False}
+    default_options = {"gtest/*:shared": False}
 
     def layout(self):
         cmake_layout(self)
@@ -18,8 +18,3 @@ class SimpleCPPConan(ConanFile):
         cmake = CMake(self)
         cmake.configure()
         cmake.build()
-
-    def test(self):
-        if not self.conf.get("tools.build:skip_test", default=False):
-            cmake = CMake(self)
-            cmake.test()
