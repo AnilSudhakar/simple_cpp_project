@@ -18,10 +18,6 @@ RUN apt-get update && apt-get install -y \
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100 \
     && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 100
 
-RUN pipx install conan
-
-ENV PATH="/root/.local/bin:$PATH"
-
 RUN set -eux; \
     existing_group=$(getent group ${LOCAL_GROUP_ID:-1000} | cut -d: -f1 || true); \
     if [ -z "$existing_group" ]; then \
@@ -40,3 +36,7 @@ RUN set -eux; \
 USER ${LOCAL_USER_ID:-1000}
 
 WORKDIR /home/docker
+
+RUN pipx install conan && \
+    echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc && \
+    . ~/.bashrc
