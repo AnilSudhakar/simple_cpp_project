@@ -29,9 +29,12 @@ jobs:
       run: ./run_docker.sh
 
     - name: Run the docker now
-      run: docker run anilkaiy.jfrog.io/docker-trial/development_docker:latest
+      run: docker run -d anilkaiy.jfrog.io/docker-trial/development_docker:latest
 
-    - name: TEST
+    - name: Images
+      run: docker images
+  
+    - name: Containers
       run: docker container ls
 
     - name: Build
