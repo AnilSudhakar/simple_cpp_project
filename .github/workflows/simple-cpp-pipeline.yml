@@ -25,11 +25,11 @@ jobs:
     - name: Set up
       run: echo "${{ secrets.JFROG_TOKEN }}" | docker login anilkaiy.jfrog.io -u "${{ secrets.JFROG_USER_NAME }}" --password-stdin
 
-    - name: Run Docker
-      run: ./run_docker.sh
+    # - name: Run Docker
+    #   run: ./run_docker.sh
 
     - name: Build
-      run: ./build.sh
+      run: ./run_docker.sh && ./build.sh
 
     - name: Run Unit-tests
       run: ./run_unit_tests.sh
