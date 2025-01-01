@@ -1,5 +1,15 @@
 #!/bin/bash
 
+DOCKER_IMAGE_NAME="anilkaiy.jfrog.io/docker-trial/development_docker"
+TAG_NAME="latest"
+
+if [ "$(docker images -q $DOCKER_IMAGE_NAME:$TAG_NAME 2> /dev/null)" == "" ]; then
+  echo "Docker image not found. Pulling from JFrog..."
+  docker pull $DOCKER_IMAGE_NAME:$TAG_NAME
+else
+  echo "Docker image found: $DOCKER_IMAGE_NAME:$TAG_NAME. Skipping pull..."
+fi
+
 RELATIVE_PATH=$(dirname "$0")
 ABSOLUTE_PATH=$(cd "$RELATIVE_PATH"; pwd)
 
@@ -17,7 +27,6 @@ DOCKER_RUN_ARGS=(
   -v "/home/$USER/.conan:/home/ubuntu/.conan2"
   -e LOCAL_USER_ID=$USER_ID
   -e LOCAL_GROUP_ID=$GROUP_ID
-  -it development_docker
 )
 
-docker run "${DOCKER_RUN_ARGS[@]}"
+docker run -it --rm "${DOCKER_RUN_ARGS[@]}" $DOCKER_IMAGE_NAME:$TAG_NAME
