@@ -28,6 +28,9 @@ jobs:
     - name: Run Docker
       run: ./run_docker.sh
 
+    - name: Run the docker now
+      run: docker run anilkaiy.jfrog.io/docker-trial/development_docker:latest
+
     - name: TEST
       run: docker container ls
 
