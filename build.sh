@@ -23,3 +23,9 @@ if [ $? -ne 0 ]; then
     echo -e "${RED}Build failed. Check logs for additional information${CLEAR}"
     exit 1
 fi
+
+cmake --install $BUILD_DIR --prefix $BUILD_DIR/install
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Installation failed. Check logs for additional information${CLEAR}"
+    exit 1
+fi
