@@ -23,7 +23,7 @@ if [ ! -d "$HOST_CONAN_DIR" ]; then
 fi
 
 DOCKER_RUN_ARGS=(
-  --user "$USER_ID:$GROUP_ID" 
+  --user "$USER_ID:$GROUP_ID" -i
   -v "$ABSOLUTE_PATH/../simple_cpp_project:/home/docker"
   -v "/home/$USER/.conan:/home/ubuntu/.conan2"
 )
