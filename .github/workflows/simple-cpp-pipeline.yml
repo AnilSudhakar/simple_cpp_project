@@ -33,6 +33,7 @@ jobs:
       run: |
         docker create --name my-container anilkaiy.jfrog.io/docker-trial/development_docker:latest
         docker start my-container
+        echo "$PATH"
 
     - name: Images
       run: docker images
