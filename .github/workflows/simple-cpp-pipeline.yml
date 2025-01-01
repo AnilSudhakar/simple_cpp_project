@@ -35,6 +35,7 @@ jobs:
         docker start my-container
         echo "$PATH"
         docker container ls
+        ./build.sh
 
     - name: Images
       run: docker images
