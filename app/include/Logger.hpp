@@ -12,6 +12,10 @@ public:
     static Logger& getInstance();
 
     void setLogLevel(LogLevel level);
+    LogLevel getLogLevel() const;
+
+    bool isLogLevelEnabled(LogLevel level) const;
+    
     void setOutputFile(const std::string& filename);
 
     void log(LogLevel level, const std::string& message);
@@ -23,7 +27,6 @@ private:
     LogLevel _currentLevel;
     std::ofstream _logFile;
 
-    bool isLogLevelEnabled(LogLevel level) const;
     std::string logLevelToString(LogLevel level) const;
 };
 

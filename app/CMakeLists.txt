@@ -11,13 +11,20 @@ target_include_directories(logger
         include
     )
 
-add_executable(app
-    src/main.cpp
+target_compile_options(logger
+    PRIVATE
+        -Wall -Wextra -Werror
     )
 
-target_link_libraries(app 
-    PRIVATE 
-        logger
+set_target_properties(logger
+    PROPERTIES
+        CXX_EXTENSIONS OFF
+        CMAKE_CXX_STANDARD_REQUIRED ON
+    )
+
+target_compile_features(logger
+    PRIVATE
+        cxx_std_17
     )
 
 install(TARGETS logger DESTINATION lib)
