@@ -28,4 +28,4 @@ DOCKER_RUN_ARGS=(
   -v "/home/$USER/.conan:/home/ubuntu/.conan2"
 )
 
-docker run -i --rm "${DOCKER_RUN_ARGS[@]}" $DOCKER_IMAGE_NAME:$TAG_NAME
+docker run  --rm "${DOCKER_RUN_ARGS[@]}" $DOCKER_IMAGE_NAME:$TAG_NAME
