@@ -12,6 +12,7 @@ public:
     static Logger& getInstance();
 
     void setLogLevel(LogLevel level);
+    LogLevel getLogLevel() const;
     void setOutputFile(const std::string& filename);
 
     void log(LogLevel level, const std::string& message);
