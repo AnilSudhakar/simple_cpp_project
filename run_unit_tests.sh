@@ -33,5 +33,5 @@ if [ $? -ne 0 ]; then
 fi
 
 echo -e "${GREEN}Running unit tests${CLEAR}"
-# ctest --test-dir $BUILD_DIR
+
 ctest -T test --test-dir $BUILD_DIR --output-on-failure
