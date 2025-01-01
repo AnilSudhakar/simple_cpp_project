@@ -25,11 +25,14 @@ jobs:
     - name: Set up
       run: echo "${{ secrets.JFROG_TOKEN }}" | docker login anilkaiy.jfrog.io -u "${{ secrets.JFROG_USER_NAME }}" --password-stdin
 
-    - name: Run Docker
-      run: ./run_docker.sh
+    - name: Pull Docker Image
+      run: docker pull anilkaiy.jfrog.io/docker-trial/development_docker:latest
 
-    - name: Run the docker now
-      run: docker run -d anilkaiy.jfrog.io/docker-trial/development_docker:latest
+    # Create a Docker container (without using docker run directly)
+    - name: Set up and start the container
+      run: |
+        docker create --name my-container anilkaiy.jfrog.io/docker-trial/development_docker:latest
+        docker start my-container
 
     - name: Images
       run: docker images
