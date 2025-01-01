@@ -50,13 +50,14 @@ void Logger::log(LogLevel level, const std::string& message) {
 
     if (_logFile.is_open()) {
         _logFile << oss.str();
+        _logFile.flush();
     } else {
         std::cout << oss.str();
     }
 }
 
 bool Logger::isLogLevelEnabled(LogLevel level) const {
-    return level >= _currentLevel;
+    return level == _currentLevel;
 }
 
 std::string Logger::logLevelToString(LogLevel level) const {

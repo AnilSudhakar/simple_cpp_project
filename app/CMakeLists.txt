@@ -13,6 +13,13 @@ target_include_directories(logger
 
 target_compile_options(logger
     PRIVATE
+        -Wall -Wextra -Werror
+    )
+
+set_target_properties(logger
+    PROPERTIES
+        CXX_EXTENSIONS OFF
+        CMAKE_CXX_STANDARD_REQUIRED ON
     )
 
 target_compile_features(logger
