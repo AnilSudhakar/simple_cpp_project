@@ -29,4 +29,4 @@ DOCKER_RUN_ARGS=(
   -e LOCAL_GROUP_ID=$GROUP_ID
 )
 
-docker run -it --rm "${DOCKER_RUN_ARGS[@]}" $DOCKER_IMAGE_NAME:$TAG_NAME
+docker run --rm "${DOCKER_RUN_ARGS[@]}" $DOCKER_IMAGE_NAME:$TAG_NAME
