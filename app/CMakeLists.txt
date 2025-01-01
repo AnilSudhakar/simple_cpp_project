@@ -11,13 +11,13 @@ target_include_directories(logger
         include
     )
 
-add_executable(app
-    src/main.cpp
+target_compile_options(logger
+    PRIVATE
     )
 
-target_link_libraries(app 
-    PRIVATE 
-        logger
+target_compile_features(logger
+    PRIVATE
+        cxx_std_17
     )
 
 install(TARGETS logger DESTINATION lib)
