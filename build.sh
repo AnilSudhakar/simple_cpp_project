@@ -16,7 +16,7 @@ cmake --version
 echo "========================================================================"
 cd 
 ls -all
-conan --version
+tree
 # docker info
 docker container ls -a
 
