@@ -58,7 +58,7 @@ DOCKER_RUN_ARGS=(
   --user "$USER_ID:$GROUP_ID" --rm
   -e PATH="$HOME/.local/bin:$PATH"
   -v "$ABSOLUTE_PATH/../simple_cpp_project:/home/docker"
-  -v "/home/$USER/.conan:/home/ubuntu/.conan2"
+  -v "/home/$USER/.conan:/home/conan/.conan2"
   -e LOCAL_USER_ID=$USER_ID
   -e LOCAL_GROUP_ID=$GROUP_ID
 )

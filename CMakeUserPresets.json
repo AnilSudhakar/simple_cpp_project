@@ -4,6 +4,6 @@
         "conan": {}
     },
     "include": [
-        "_build-output/build/Release/generators/CMakePresets.json"
+        "/home/docker/_build-output/build/Release/generators/CMakePresets.json"
     ]
 }
