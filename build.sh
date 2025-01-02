@@ -24,6 +24,8 @@ ls -all
 echo "============================cd /usr/bin============================"
 cd
 cd /usr/bin
+echo "============================ls============================"
+ls -all
 
 conan install . --output-folder=$BUILD_DIR --build=missing
 if [ $? -ne 0 ]; then
