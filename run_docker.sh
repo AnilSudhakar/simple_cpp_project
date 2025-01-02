@@ -65,6 +65,8 @@ DOCKER_RUN_ARGS=(
 
 if [ "$CI_BUILD" == "false" ]; then
   DOCKER_RUN_ARGS+=(-it)
+else
+  DOCKER_RUN_ARGS+=(-d)
 fi
 
-docker run "${DOCKER_RUN_ARGS[@]}" $DOCKER_IMAGE_NAME:$TAG_NAME
+docker run --name test_container "${DOCKER_RUN_ARGS[@]}" $DOCKER_IMAGE_NAME:$TAG_NAME
