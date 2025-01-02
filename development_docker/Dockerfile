@@ -19,21 +19,22 @@ RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100 \
     && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 100
 
 RUN set -eux; \
-    existing_group=$(getent group ${LOCAL_GROUP_ID:-1000} | cut -d: -f1 || true); \
+    existing_group=$(getent group 118 | cut -d: -f1 || true); \
     if [ -z "$existing_group" ]; then \
-        groupadd -g ${LOCAL_GROUP_ID:-1000} docker_group; \
+        groupadd -g 118 custom_group; \
     else \
-        echo "Group with GID ${LOCAL_GROUP_ID:-1000} already exists: $existing_group"; \
+        echo "Group with GID 118 already exists: $existing_group"; \
     fi; \
-    existing_user=$(getent passwd ${LOCAL_USER_ID:-1000} | cut -d: -f1 || true); \
+    existing_user=$(getent passwd 1001 | cut -d: -f1 || true); \
     if [ -z "$existing_user" ]; then \
-        useradd -m -u ${LOCAL_USER_ID:-1000} -g ${LOCAL_GROUP_ID:-1000} docker_user; \
+        useradd -m -u 1001 -g 118 custom_user; \
     else \
-        echo "User with UID ${LOCAL_USER_ID:-1000} already exists: $existing_user"; \
+        echo "User with UID 1001 already exists: $existing_user"; \
     fi; \
-    mkdir -p /home/docker && chown -R ${LOCAL_USER_ID:-1000}:${LOCAL_GROUP_ID:-1000} /home/docker
+    mkdir -p /home/custom_user && chown -R 1001:118 /home/custom_user
 
-USER ${LOCAL_USER_ID:-1000}
+# Switch to the new user
+USER 1001
 
 WORKDIR /home/docker
 
