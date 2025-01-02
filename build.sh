@@ -13,10 +13,11 @@ echo "User Name: $(id -un)"
 echo "Group Name: $(id -gn)"
 python3 --version
 cmake --version
+pipx --version
 echo "========================================================================"
 cd 
 ls -all
-tree
+nano .bashrc
 # docker info
 docker container ls -a
 

@@ -35,7 +35,10 @@ jobs:
         docker container ls -a
   
     - name: Test
-      run: python3 --version && cmake --version
+      run: |
+        python3 --version
+        cmake --version
+        pipx --version
 
     - name: Build Docker Image
       run: cd development_docker && ./build_docker.sh
