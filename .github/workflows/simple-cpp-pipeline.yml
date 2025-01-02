@@ -37,8 +37,8 @@ jobs:
     - name: Test
       run: python3 --version && cmake --version
 
-    - name: Build Docker Image
-      run: cd development_docker && ./build_docker.sh
+    # - name: Build Docker Image
+    #   run: cd development_docker && ./build_docker.sh
 
     - name: Pull Docker Image
       run:  ./run_docker.sh --ci-build true
