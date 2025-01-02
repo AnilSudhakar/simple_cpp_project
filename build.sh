@@ -13,6 +13,7 @@ echo "User Name: $(id -un)"
 echo "Group Name: $(id -gn)"
 python3 --version
 cmake --version
+conan --version
 
 # conan install . --output-folder=$BUILD_DIR --build=missing
 # if [ $? -ne 0 ]; then
