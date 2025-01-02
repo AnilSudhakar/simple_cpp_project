@@ -32,15 +32,15 @@ while true; do
   esac
 done
 
-# DOCKER_IMAGE_NAME="anilkaiy.jfrog.io/docker-trial/development_docker"
-# TAG_NAME="latest"
+DOCKER_IMAGE_NAME="anilkaiy.jfrog.io/docker-trial/development_docker"
+TAG_NAME="latest"
 
-# if [ "$(docker images -q $DOCKER_IMAGE_NAME:$TAG_NAME 2> /dev/null)" == "" ]; then
-#   echo "Docker image not found. Pulling from JFrog..."
-#   docker pull $DOCKER_IMAGE_NAME:$TAG_NAME
-# else
-#   echo "Docker image found: $DOCKER_IMAGE_NAME:$TAG_NAME. Skipping pull..."
-# fi
+if [ "$(docker images -q $DOCKER_IMAGE_NAME:$TAG_NAME 2> /dev/null)" == "" ]; then
+  echo "Docker image not found. Pulling from JFrog..."
+  docker pull $DOCKER_IMAGE_NAME:$TAG_NAME
+else
+  echo "Docker image found: $DOCKER_IMAGE_NAME:$TAG_NAME. Skipping pull..."
+fi
 
 RELATIVE_PATH=$(dirname "$0")
 ABSOLUTE_PATH=$(cd "$RELATIVE_PATH"; pwd)
@@ -65,4 +65,4 @@ if [ "$CI_BUILD" == "false" ]; then
   DOCKER_RUN_ARGS+=(-it)
 fi
 
-docker run "${DOCKER_RUN_ARGS[@]}" development_docker
+docker run "${DOCKER_RUN_ARGS[@]}" $DOCKER_IMAGE_NAME:$TAG_NAME

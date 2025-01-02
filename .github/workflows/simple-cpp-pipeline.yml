@@ -22,8 +22,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    # - name: Set up
-    #   run: echo "${{ secrets.JFROG_TOKEN }}" | docker login anilkaiy.jfrog.io -u "${{ secrets.JFROG_USER_NAME }}" --password-stdin
+    - name: Set up
+      run: echo "${{ secrets.JFROG_TOKEN }}" | docker login anilkaiy.jfrog.io -u "${{ secrets.JFROG_USER_NAME }}" --password-stdin
 
     - name: Print User and Group Info
       run: |
@@ -33,6 +33,7 @@ jobs:
         echo "User Name: $(id -un)"
         echo "Group Name: $(id -gn)"
         docker container ls -a
+  
     - name: Test
       run: python3 --version && cmake --version
 
