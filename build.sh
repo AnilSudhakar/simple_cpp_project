@@ -5,12 +5,12 @@ CLEAR='\033[0m'
 
 BUILD_DIR="_build-output"
 # docker container ls -a
-# echo "PWD: $PWD"
-# echo "PATH: $PATH"
-# echo "User ID: $(id -u)"
-# echo "Group ID: $(id -g)"
-# echo "User Name: $(id -un)"
-# echo "Group Name: $(id -gn)"
+echo "PWD: $PWD"
+echo "PATH: $PATH"
+echo "User ID: $(id -u)"
+echo "Group ID: $(id -g)"
+echo "User Name: $(id -un)"
+echo "Group Name: $(id -gn)"
 # python3 --version
 # cmake --version
 # pipx --version
