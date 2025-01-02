@@ -42,8 +42,8 @@ jobs:
 
     - name: Pull Docker Image
       run:  |
-      ./run_docker.sh --ci-build true
-      docker container ls -a
+        ./run_docker.sh --ci-build true
+        docker container ls -a
 
     - name: Build
       run: ./build.sh
