@@ -69,4 +69,4 @@ else
   DOCKER_RUN_ARGS+=(-d)
 fi
 
-docker run --name test_container "${DOCKER_RUN_ARGS[@]}" $DOCKER_IMAGE_NAME:$TAG_NAME
+docker run --name test_container "${DOCKER_RUN_ARGS[@]}" development_docker
