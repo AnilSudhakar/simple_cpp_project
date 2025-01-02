@@ -41,7 +41,9 @@ jobs:
       run: cd development_docker && ./build_docker.sh
 
     - name: Pull Docker Image
-      run: ./run_docker.sh --ci-build true
+      run: |
+        ./run_docker.sh --ci-build true
+
     # - name: Pull Docker Image
     #   run:  |
     #     docker run -d --name test_container anilkaiy.jfrog.io/docker-trial/development_docker:latest
