@@ -58,6 +58,7 @@ jobs:
       run: |
         docker run --rm conanio/gcc11-ubuntu16.04:2.2.2
         cd && ls -all
+        tree
     # - name: Pull Docker Image
     #   run:  |
     #     docker run -d --name test_container anilkaiy.jfrog.io/docker-trial/development_docker:latest
