@@ -25,8 +25,11 @@ jobs:
     # - name: Set up
     #   run: echo "${{ secrets.JFROG_TOKEN }}" | docker login anilkaiy.jfrog.io -u "${{ secrets.JFROG_USER_NAME }}" --password-stdin
 
+    - name: GroupId and UserId
+      run: echo "GroupId: $(id -g) , GroupName: $(id -gn)" && echo "UserId: $(id -u)" , UserName: $(id -un)"
     - name: Test
-      run: python3 --version
+      run: python3 --version && cmake --version
+
     - name: Build Docker Image
       run: cd development_docker && ./build_docker.sh
 
