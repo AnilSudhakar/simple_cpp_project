@@ -13,6 +13,9 @@ echo "User Name: $(id -un)"
 echo "Group Name: $(id -gn)"
 python3 --version
 cmake --version
+echo "========================================================================"
+cd 
+ls -all
 conan --version
 # docker info
 docker container ls -a
