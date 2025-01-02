@@ -8,6 +8,8 @@ echo "PWD: $PWD"
 echo "PATH: $PATH"
 echo "User ID: $(id -u)"
 echo "Group ID: $(id -g)"
+echo "User Name: $(id -un)"
+echo "Group Name: $(id -gn)"
 
 # conan install . --output-folder=$BUILD_DIR --build=missing
 # if [ $? -ne 0 ]; then
