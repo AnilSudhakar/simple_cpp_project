@@ -54,10 +54,11 @@ jobs:
       run: |
         docker pull conanio/gcc11-ubuntu16.04:2.2.2
 
-    - name: Run Docker container
+    - name: Run Docker container and install Conan
       run: |
-        docker run --rm conanio/gcc11-ubuntu16.04:2.2.2 bash -c conan list
-        conan list
+        docker run --rm conanio/gcc11-ubuntu16.04:2.2.2 bash -c "
+          apt-get update && apt-get install -y python3-pip && pip3 install conan && conan --version
+        "
     # - name: Pull Docker Image
     #   run:  |
     #     docker run -d --name test_container anilkaiy.jfrog.io/docker-trial/development_docker:latest
