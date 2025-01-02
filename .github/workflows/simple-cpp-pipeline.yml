@@ -40,20 +40,27 @@ jobs:
         cmake --version
         pipx --version
 
-    - name: Build Docker Image
-      run: cd development_docker && ./build_docker.sh
+    # - name: Build Docker Image
+    #   run: cd development_docker && ./build_docker.sh
 
-    - name: Pull Docker Image
+    # - name: Pull Docker Image
+    #   run: |
+    #     ./run_docker.sh --ci-build true
+    - name: Pull Docker image
       run: |
-        ./run_docker.sh --ci-build true
+        docker pull conanio/gcc11-ubuntu16.04:2.2.2
 
+    - name: Run Docker container
+      run: |
+        docker run --rm conanio/gcc11-ubuntu16.04:2.2.2
+        conan --version
     # - name: Pull Docker Image
     #   run:  |
     #     docker run -d --name test_container anilkaiy.jfrog.io/docker-trial/development_docker:latest
     #     docker container ls -a
 
-    - name: Build
-      run: ./build.sh
+    # - name: Build
+    #   run: ./build.sh
 
     # - name: Run Unit-tests
     #   run: ./run_unit_tests.sh
