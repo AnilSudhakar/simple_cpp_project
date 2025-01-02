@@ -6,7 +6,11 @@ CLEAR='\033[0m'
 BUILD_DIR="_build-output"
 
 echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc && \
-    . ~/.bashrc
+echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.profile && \
+export PATH=$HOME/.local/bin:$PATH
+
+. ~/.bashrc
+. ~/.profile
 
 echo "PATH: $PATH"
 echo "============================cd============================"
@@ -15,15 +19,6 @@ echo "============================ls============================"
 ls -all
 echo "============================cd .local/bin============================"
 cd .local/bin
-echo "============================ls============================"
-ls -all
-echo "============================cd usr/local/bin============================"
-cd /usr/local/bin
-echo "============================ls============================"
-ls -all
-echo "============================cd /usr/bin============================"
-cd
-cd /usr/bin
 echo "============================ls============================"
 ls -all
 
