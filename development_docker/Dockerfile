@@ -39,4 +39,5 @@ USER 1001
 WORKDIR /home/docker
 
 RUN pipx install conan && \
-    echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc
+    echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc && \
+    . ~/.bashrc
