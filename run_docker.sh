@@ -58,8 +58,6 @@ DOCKER_RUN_ARGS=(
   --user "$USER_ID:$GROUP_ID" --rm
   -v "$ABSOLUTE_PATH/../simple_cpp_project:/home/docker"
   -v "/home/$USER/.conan:/home/ubuntu/.conan2"
-  -e LOCAL_USER_ID=$USER_ID
-  -e LOCAL_GROUP_ID=$GROUP_ID
 )
 
 if [ "$CI_BUILD" == "false" ]; then
@@ -68,4 +66,4 @@ else
   DOCKER_RUN_ARGS+=(-d)
 fi
 
-docker run --name test_container "${DOCKER_RUN_ARGS[@]}" development_docker
+docker run "${DOCKER_RUN_ARGS[@]}" development_docker
