@@ -22,11 +22,14 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set up
-      run: echo "${{ secrets.JFROG_TOKEN }}" | docker login anilkaiy.jfrog.io -u "${{ secrets.JFROG_USER_NAME }}" --password-stdin
+    # - name: Set up
+    #   run: echo "${{ secrets.JFROG_TOKEN }}" | docker login anilkaiy.jfrog.io -u "${{ secrets.JFROG_USER_NAME }}" --password-stdin
+
+    - name: Build Docker Image
+      run: cd development_docker && ./build_docker.sh
 
     - name: Pull Docker Image
-      run: ./run_docker.sh --ci-build true
+      run: cd.. && ./run_docker.sh --ci-build true
 
     - name: Build
       run: ./build.sh

@@ -5,13 +5,6 @@ CLEAR='\033[0m'
 
 BUILD_DIR="_build-output"
 
-echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc && \
-echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.profile && \
-export PATH=$HOME/.local/bin:$PATH
-
-. ~/.bashrc
-. ~/.profile
-
 echo "PATH: $PATH"
 echo "============================cd============================"
 cd
