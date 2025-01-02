@@ -27,11 +27,11 @@ RUN set -eux; \
     fi; \
     existing_user=$(getent passwd 1001 | cut -d: -f1 || true); \
     if [ -z "$existing_user" ]; then \
-        useradd -m -u 1001 -g 118 custom_user; \
+        useradd -m -u 1001 -g 118 runner; \
     else \
         echo "User with UID 1001 already exists: $existing_user"; \
     fi; \
-    mkdir -p /home/custom_user && chown -R 1001:118 /home/custom_user
+    mkdir -p /home/runner && chown -R 1001:118 /home/runner
 
 # Switch to the new user
 USER 1001
