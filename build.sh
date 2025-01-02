@@ -4,7 +4,7 @@ RED='\033[0;31m'
 CLEAR='\033[0m'
 
 BUILD_DIR="_build-output"
-
+echo "PWD: $PWD"
 echo "PATH: $PATH"
 echo "============================cd============================"
 cd
