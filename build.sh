@@ -4,7 +4,9 @@ RED='\033[0;31m'
 CLEAR='\033[0m'
 
 BUILD_DIR="_build-output"
-export PATH=$HOME/.local/bin:$PATH
+
+echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc && \
+    . ~/.bashrc
 
 echo "PATH: $PATH"
 echo "============================cd============================"
