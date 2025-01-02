@@ -21,7 +21,7 @@ RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100 \
 RUN set -eux; \
     existing_group=$(getent group 118 | cut -d: -f1 || true); \
     if [ -z "$existing_group" ]; then \
-        groupadd -g 118 custom_group; \
+        groupadd -g 118 docker; \
     else \
         echo "Group with GID 118 already exists: $existing_group"; \
     fi; \
