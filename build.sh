@@ -4,6 +4,7 @@ RED='\033[0;31m'
 CLEAR='\033[0m'
 
 BUILD_DIR="_build-output"
+docker container ls -a
 echo "PWD: $PWD"
 echo "PATH: $PATH"
 echo "User ID: $(id -u)"
