@@ -17,7 +17,8 @@ pipx --version
 echo "========================================================================"
 cd 
 ls -all
-nano .bashrc
+# echo the contents of .bashrc
+cat .bashrc
 # docker info
 docker container ls -a
 
