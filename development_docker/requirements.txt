@@ -1,0 +1,2 @@
+conan==2.9
+virtualenv==20.23.1
