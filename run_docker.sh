@@ -58,7 +58,7 @@ fi
 
 DOCKER_RUN_ARGS=(
   --user "$USER_ID:$GROUP_ID" --rm
-  -v "$ABSOLUTE_PATH/../simple_cpp_project:/home/docker"
+  -v "$ABSOLUTE_PATH:/home/docker"
   -v "/home/$USER/.conan:/home/ubuntu/.conan2"
 )
 
@@ -70,4 +70,4 @@ else
   echo "Running in detached mode..."
 fi
 
-docker run -d "${DOCKER_RUN_ARGS[@]}" development_docker
+docker run "${DOCKER_RUN_ARGS[@]}" development_docker
