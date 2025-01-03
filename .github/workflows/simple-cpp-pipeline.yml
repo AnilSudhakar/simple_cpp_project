@@ -48,7 +48,7 @@ jobs:
 
     - name: Pull Docker Image
       run: |
-        ./run_docker.sh --ci-build true
+        docker run -d development_docker /bin/bash -c "echo $PWD"
         ./build.sh
 
     # - name: Pull Docker image
