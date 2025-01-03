@@ -56,7 +56,7 @@ jobs:
 
     - name: Run Docker container
       run: |
-        docker run --rm conanio/gcc11-ubuntu16.04:2.2.2 /bin/bash -c "cmake --version && g++ --version"
+        docker run --rm conanio/gcc11-ubuntu16.04:2.2.2 /bin/bash -c "cmake --version && g++ --version && conan --version"
     #     cd && ls -all
     #     tree
     # - name: Pull Docker Image
