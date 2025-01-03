@@ -21,9 +21,7 @@ jobs:
 
     container:
       image: anilkaiy.jfrog.io/docker-trial/development_docker:1
-      credentials:
-        username: ${{ secrets.JFROG_TOKEN }}
-        password: ${{ secrets.JFROG_USER_NAME }}
+        run: echo "${{ secrets.JFROG_TOKEN }}" | docker login anilkaiy.jfrog.io -u "${{ secrets.JFROG_USER_NAME }}" --password-stdin
 
     steps:
     - uses: actions/checkout@v4
