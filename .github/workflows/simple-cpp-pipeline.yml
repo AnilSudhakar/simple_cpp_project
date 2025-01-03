@@ -57,7 +57,7 @@ jobs:
         
     - name: Run Docker container Conan
       run: |
-        docker run --rm -d conanio/gcc11-ubuntu16.04:2.2.2 /bin/bash -c "cmake --version && python3 --version && conan --version"
+        docker run --rm conanio/gcc11-ubuntu16.04:2.2.2 /bin/bash -c "cmake --version && python3 --version && conan --version"
 
     - name: Pull My Docker image
       run: |
@@ -65,7 +65,7 @@ jobs:
 
     - name: Run My Docker Image
       run:  |
-        docker run --rm -d --name test_container anilkaiy.jfrog.io/docker-trial/development_docker:1 /bin/bash -c "cmake --version && python3 --version && conan --version"
+        docker run --rm --name test_container anilkaiy.jfrog.io/docker-trial/development_docker:1 /bin/bash -c "cmake --version && python3 --version && conan --version"
 
     # - name: Build
     #   run: ./build.sh
