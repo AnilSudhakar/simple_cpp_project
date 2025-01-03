@@ -5,24 +5,23 @@ ARG LOCAL_GROUP_ID
 
 USER root
 
-RUN apt-get update && apt-get install -y \
-    gcc-9 \
-    g++-9 \
-    cmake \
-    ninja-build \
-    curl \
-    nano \
-    git \
-    python3 \
-    python3-pip \
-    python3-venv \
-    python3-setuptools \
-    build-essential \
-    libyaml-dev \
-    cython3
+COPY toolchain_catalog.apt-get.packages /
 
-# RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100 \
-#     && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 100
+RUN apt-get update \
+    && \
+    echo "Installing via apt-get ..." \
+    && \
+    bash -c "apt-get install -y  $(cat /toolchain_catalog.apt-get.packages | tr '\n' ' ')" \
+    && \
+    rm /toolchain_catalog.apt-get.packages \
+    && \
+    apt-get clean \
+    && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && echo "Finished"
+
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100 \
+    && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 100
 
 ADD helper/fixuid /home/docker/fixuid
 
@@ -41,7 +40,6 @@ ADD requirements.txt /
 
 RUN python3 -m venv /opt/venv && \
     . /opt/venv/bin/activate && \
-    pip install --upgrade pip setuptools wheel && \
     pip install -r requirements.txt && \
     deactivate && \
     rm requirements.txt
