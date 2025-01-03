@@ -48,7 +48,7 @@ jobs:
 
     - name: Pull Docker Image
       run: |
-        docker run -d development_docker /bin/bash -c "echo $PWD"
+        ./run_docker.sh --ci-build true
         ./build.sh
 
     # - name: Pull Docker image
@@ -57,7 +57,7 @@ jobs:
 
     # - name: Run Docker container
     #   run: |
-    #     docker run --rm -d conanio/gcc11-ubuntu16.04:2.2.2
+    #     docker run --rm -d conanio/gcc11-ubuntu16.04:2.2.2 
     #     ./build.sh
         
     #     cd && ls -all

@@ -43,7 +43,9 @@ TAG_NAME="latest"
 # fi
 
 RELATIVE_PATH=$(dirname "$0")
+echo "Running from: $RELATIVE_PATH"
 ABSOLUTE_PATH=$(cd "$RELATIVE_PATH"; pwd)
+echo "Running from: $ABSOLUTE_PATH"
 
 USER_ID=$(id -u)
 GROUP_ID=$(id -g)
@@ -68,4 +70,4 @@ else
   echo "Running in detached mode..."
 fi
 
-docker run -d "${DOCKER_RUN_ARGS[@]}" development_docker /bin/bash -c "echo $PWD"
+docker run -d "${DOCKER_RUN_ARGS[@]}" development_docker
