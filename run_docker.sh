@@ -33,14 +33,14 @@ while true; do
 done
 
 DOCKER_IMAGE_NAME="anilkaiy.jfrog.io/docker-trial/development_docker"
-TAG_NAME="latest"
+TAG_NAME="1"
 
-# if [ "$(docker images -q $DOCKER_IMAGE_NAME:$TAG_NAME 2> /dev/null)" == "" ]; then
-#   echo "Docker image not found. Pulling from JFrog..."
-#   docker pull $DOCKER_IMAGE_NAME:$TAG_NAME
-# else
-#   echo "Docker image found: $DOCKER_IMAGE_NAME:$TAG_NAME. Skipping pull..."
-# fi
+if [ "$(docker images -q $DOCKER_IMAGE_NAME:$TAG_NAME 2> /dev/null)" == "" ]; then
+  echo "Docker image not found. Pulling from JFrog..."
+  docker pull $DOCKER_IMAGE_NAME:$TAG_NAME
+else
+  echo "Docker image found: $DOCKER_IMAGE_NAME:$TAG_NAME. Skipping pull..."
+fi
 
 RELATIVE_PATH=$(dirname "$0")
 echo "Running from: $RELATIVE_PATH"
@@ -65,9 +65,6 @@ DOCKER_RUN_ARGS=(
 if [ "$CI_BUILD" == "false" ]; then
   DOCKER_RUN_ARGS+=(-it)
   echo "Running in interactive mode..."
-else
-  DOCKER_RUN_ARGS+=(-d)
-  echo "Running in detached mode..."
 fi
 
-docker run "${DOCKER_RUN_ARGS[@]}" development_docker
+docker run "${DOCKER_RUN_ARGS[@]}" $DOCKER_IMAGE_NAME:$TAG_NAME
