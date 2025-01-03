@@ -66,4 +66,4 @@ else
   DOCKER_RUN_ARGS+=(-d)
 fi
 
-docker run "${DOCKER_RUN_ARGS[@]}" development_docker bash -c " echo Hello from inside the container"
+docker run "${DOCKER_RUN_ARGS[@]}" development_docker /bin/bash -c "echo 'Hello from inside the container'"
