@@ -68,4 +68,4 @@ else
   echo "Running in detached mode..."
 fi
 
-docker run "${DOCKER_RUN_ARGS[@]}" development_docker
+docker run -d "${DOCKER_RUN_ARGS[@]}" development_docker /bin/bash -c "echo $PWD"
