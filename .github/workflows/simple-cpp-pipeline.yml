@@ -21,13 +21,12 @@ jobs:
 
     container:
       image: anilkaiy.jfrog.io/docker-trial/development_docker:1
-        run: echo "${{ secrets.JFROG_TOKEN }}" | docker login anilkaiy.jfrog.io -u "${{ secrets.JFROG_USER_NAME }}" --password-stdin
 
     steps:
     - uses: actions/checkout@v4
 
-    # - name: Set up
-    #   run: echo "${{ secrets.JFROG_TOKEN }}" | docker login anilkaiy.jfrog.io -u "${{ secrets.JFROG_USER_NAME }}" --password-stdin
+    - name: Set up
+      run: echo "${{ secrets.JFROG_TOKEN }}" | docker login anilkaiy.jfrog.io -u "${{ secrets.JFROG_USER_NAME }}" --password-stdin
 
     # - name: Print User and Group Info
     #   run: |
