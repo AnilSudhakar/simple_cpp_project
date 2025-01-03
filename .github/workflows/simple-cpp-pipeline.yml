@@ -75,8 +75,7 @@ jobs:
 
     - name: Build
       run: |
-        echo $PWD
-        conan --version
+        conan profile default
         ./build.sh
 
     # - name: Run Unit-tests
