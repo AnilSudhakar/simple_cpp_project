@@ -28,56 +28,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    # - name: Set up
-    #   run: echo "${{ secrets.JFROG_TOKEN }}" | docker login anilkaiy.jfrog.io -u "${{ secrets.JFROG_USER_NAME }}" --password-stdin
-
-    # - name: Print User and Group Info
-    #   run: |
-    #     echo "=== Host Environment ==="
-    #     echo "User ID: $(id -u)"
-    #     echo "Group ID: $(id -g)"
-    #     echo "User Name: $(id -un)"
-    #     echo "Group Name: $(id -gn)"
-    #     docker container ls -a
-  
-    # - name: Test
-    #   run: |
-    #     python3 --version
-    #     cmake --version
-    #     pipx --version
-
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
-    
-    # - name: Build Docker Image
-    #   run: cd development_docker && ./build_docker.sh
-
-    # - name: Pull Docker Image
-    #   run: |
-    #     ./run_docker.sh --ci-build true
-    #     ./build.sh
-
-    # - name: Pull Docker image Conan
-    #   run: |
-    #     docker pull conanio/gcc11-ubuntu16.04:2.2.2
-        
-    # - name: Run Docker container Conan
-    #   run: |
-    #     docker run --rm conanio/gcc11-ubuntu16.04:2.2.2 /bin/bash -c "cmake --version && python3 --version && conan --version"
-
-    # - name: Pull My Docker image
-    #   run: |
-    #     docker pull anilkaiy.jfrog.io/docker-trial/development_docker:1
-
-    # - name: Run My Docker Image
-    #   run:  |
-    #     docker run --rm --name test_container anilkaiy.jfrog.io/docker-trial/development_docker:1 /bin/bash -c "cmake --version && python3 --version && conan --version"
 
     - name: Build
-      run: |
-        conan profile detect
-        ./build.sh
+      run: ./build.sh
 
-    # - name: Run Unit-tests
-    #   run: ./run_unit_tests.sh
-
+    - name: Run Unit-tests
+      run: ./run_unit_tests.sh
