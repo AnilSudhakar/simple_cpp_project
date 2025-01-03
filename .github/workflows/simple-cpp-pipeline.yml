@@ -75,7 +75,7 @@ jobs:
 
     - name: Build
       run: |
-        conan profile default
+        conan profile detect
         ./build.sh
 
     # - name: Run Unit-tests
