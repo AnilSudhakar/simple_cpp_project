@@ -3,40 +3,55 @@ FROM ubuntu:latest
 ARG LOCAL_USER_ID
 ARG LOCAL_GROUP_ID
 
-RUN apt-get update && apt-get install -y \
-    gcc-9 \
-    g++-9 \
-    cmake \
-    ninja-build \
-    curl \
-    python3-pip \
-    python3-setuptools \
-    python3-dev \
-    python3-venv \
-    pipx
+USER root
+
+COPY toolchain_catalog.apt-get.packages /
+
+RUN apt-get update \
+    && \
+    echo "Installing via apt-get ..." \
+    && \
+    bash -c "apt-get install -y  $(cat /toolchain_catalog.apt-get.packages | tr '\n' ' ')" \
+    && \
+    rm /toolchain_catalog.apt-get.packages \
+    && \
+    apt-get clean \
+    && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && echo "Finished"
 
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100 \
     && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 100
 
-RUN set -eux; \
-    existing_group=$(getent group ${LOCAL_GROUP_ID:-1000} | cut -d: -f1 || true); \
-    if [ -z "$existing_group" ]; then \
-        groupadd -g ${LOCAL_GROUP_ID:-1000} docker_group; \
-    else \
-        echo "Group with GID ${LOCAL_GROUP_ID:-1000} already exists: $existing_group"; \
-    fi; \
-    existing_user=$(getent passwd ${LOCAL_USER_ID:-1000} | cut -d: -f1 || true); \
-    if [ -z "$existing_user" ]; then \
-        useradd -m -u ${LOCAL_USER_ID:-1000} -g ${LOCAL_GROUP_ID:-1000} docker_user; \
-    else \
-        echo "User with UID ${LOCAL_USER_ID:-1000} already exists: $existing_user"; \
-    fi; \
-    mkdir -p /home/docker && chown -R ${LOCAL_USER_ID:-1000}:${LOCAL_GROUP_ID:-1000} /home/docker
+ADD helper/fixuid /home/docker/fixuid
 
-USER ${LOCAL_USER_ID:-1000}
+RUN cat /home/docker/fixuid/fixuid*.tar.gz | tar -C /usr/local/bin -xzf - && \
+    chown root:root /usr/local/bin/fixuid && \
+    chmod 4755 /usr/local/bin/fixuid && \
+    mkdir -p /etc/fixuid && \
+    cat /home/docker/fixuid/fixuid-config.yml > /etc/fixuid/config.yml && \
+    rm -rf /home/docker/fixuid
+    
+CMD ["/bin/bash"]
+
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
+ADD requirements.txt /
+
+RUN python3 -m venv /opt/venv && \
+    . /opt/venv/bin/activate && \
+    pip install -r requirements.txt && \
+    deactivate && \
+    rm requirements.txt
+
+RUN LOCAL_USER_ID=$(id -u) && LOCAL_GROUP_ID=$(id -g)
+
+USER ${LOCAL_USER_ID}:${LOCAL_GROUP_ID}
+
+RUN mkdir -p /home/docker && chown -R ${LOCAL_USER_ID}:${LOCAL_GROUP_ID} /home/docker
 
 WORKDIR /home/docker
 
-RUN pipx install conan && \
-    echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc && \
-    . ~/.bashrc
+ENV PATH=/opt/venv/bin:$PATH
+
+ENTRYPOINT ["fixuid", "-q"]
