@@ -13,7 +13,7 @@ if [ $? -ne 0 ]; then
 fi
 
 cmake -GNinja -B $BUILD_DIR -DCMAKE_TOOLCHAIN_FILE=$BUILD_DIR/build/Release/generators/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release \
-    -DBUILD_TESTS=ON
+    -DBUILD_TESTS=ON -DBUILD_PACKAGE=OFF
 
 if [ $? -ne 0 ]; then
     echo -e "${RED}CMake failed to generate build system. Check logs for additional information${CLEAR}"
