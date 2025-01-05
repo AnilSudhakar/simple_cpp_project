@@ -6,7 +6,7 @@ from conan.tools.files import copy
 
 class SimpleCPPConan(ConanFile):
     name = "simple_cpp_project"
-    version = "0.0.1"
+    version = "1.0.0"
     description = "A simple end to end C++ project"
     url = "https://github.com/AnilSudhakar/simple_cpp_project.git"
     settings = "os", "compiler", "build_type", "arch"
