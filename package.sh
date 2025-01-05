@@ -10,7 +10,7 @@ echo -e "${GREEN}Building Conan package...${CLEAR}"
 
 conan create -pr=default \
     --name=simple_cpp_project \
-    --version=0.0.1 \
+    --version=1.0.0 \
     --user=official \
     --channel=release \
     $ROOT_DIR
