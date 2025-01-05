@@ -3,17 +3,21 @@ cmake_minimum_required(VERSION "3.22")
 project(packageTest LANGUAGES CXX)
 
 find_package(simple_cpp_project REQUIRED)
-list(APPEND CMAKE_FIND_ROOT_PATH ${CMAKE_MODULE_PATH})
-
-message(STATUS "CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")
-message(STATUS "CMAKE_FIND_ROOT_PATH: ${CMAKE_FIND_ROOT_PATH}")
-
-find_package(SimpleCppProject REQUIRED)
 
 add_executable(testApp 
     src/main.cpp
     )
 
+# This is necessary to find the header files and libraries installed by the package
+target_include_directories(testApp
+    PRIVATE
+        ${simple_cpp_project_INCLUDE_DIRS}
+    )
+
+target_link_directories(testApp
+    PRIVATE
+        ${simple_cpp_project_INCLUDE_DIRS}/../lib
+    )
 
 target_compile_features(testApp 
     PRIVATE
