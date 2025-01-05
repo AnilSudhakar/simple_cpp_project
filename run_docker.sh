@@ -1,13 +1,16 @@
 #!/bin/bash
 
+GREEN='\033[0;32m'
+CLEAR='\033[0m'
+
 DOCKER_IMAGE_NAME="anilkaiy.jfrog.io/docker-trial/development_docker"
 TAG_NAME="1"
 
 if [ "$(docker images -q $DOCKER_IMAGE_NAME:$TAG_NAME 2> /dev/null)" == "" ]; then
-  echo "Docker image not found. Pulling from JFrog..."
+  echo -e "${GREEN}Docker image not found. Pulling from JFrog...${CLEAR}"
   docker pull $DOCKER_IMAGE_NAME:$TAG_NAME
 else
-  echo "Docker image found: $DOCKER_IMAGE_NAME:$TAG_NAME. Skipping pull..."
+  echo -e "${GREEN}Docker image found: $DOCKER_IMAGE_NAME:$TAG_NAME. Skipping pull...${CLEAR}"
 fi
 
 RELATIVE_PATH=$(dirname "$0")

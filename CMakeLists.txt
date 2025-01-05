@@ -12,7 +12,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if (BUILD_PACKAGE)
     include(${CMAKE_BINARY_DIR}/generators/conan_toolchain.cmake)
 else()
-    message(STATUS "CMAKE_BINARY_DIR: ${CMAKE_BINARY_DIR}")
     include(${CMAKE_BINARY_DIR}/build/Release/generators/conan_toolchain.cmake)
 endif()
 

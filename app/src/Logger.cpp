@@ -3,7 +3,7 @@
 #include <iostream>
 #include <ctime>
 #include <sstream>
-#include <iomanip> 
+#include <iomanip>
 
 namespace logging {
 
@@ -36,15 +36,15 @@ void Logger::setOutputFile(const std::string& filename) {
 }
 
 void Logger::log(LogLevel level, const std::string& message) {
-    if (!isLogLevelEnabled(level)) {
-        return;
+    if (!isLogLevelChanged(level)) {
+        setLogLevel(level);
     } 
 
     auto t = std::time(nullptr);
     auto tm = *std::localtime(&t);
 
     std::ostringstream oss;
-    oss << "[" << logLevelToString(level) << "] "
+    oss << "[" << logLevelToString(_currentLevel) << "] "
         << std::put_time(&tm, "%Y-%m-%d %H:%M:%S") << ": "
         << message << "\n";
 
@@ -56,8 +56,8 @@ void Logger::log(LogLevel level, const std::string& message) {
     }
 }
 
-bool Logger::isLogLevelEnabled(LogLevel level) const {
-    return level == _currentLevel;
+bool Logger::isLogLevelChanged(LogLevel level) const {
+    return _currentLevel == level;
 }
 
 std::string Logger::logLevelToString(LogLevel level) const {

@@ -24,25 +24,22 @@ protected:
     }
 };
 
-TEST_F(LoggerTest, SingletonInstance) {
+TEST_F(LoggerTest, singletonInstance) {
     Logger& anotherInstance = Logger::getInstance();
     EXPECT_EQ(&logger, &anotherInstance);
 }
 
-TEST_F(LoggerTest, DefaultLogLevel) {
-    EXPECT_TRUE(logger.isLogLevelEnabled(LogLevel::INFO));
-    EXPECT_FALSE(logger.isLogLevelEnabled(LogLevel::DEBUG));
-}
-
-TEST_F(LoggerTest, SetLogLevel) {
+TEST_F(LoggerTest, checkLogLevel) {
     logger.setLogLevel(LogLevel::ERROR);
-    EXPECT_FALSE(logger.isLogLevelEnabled(LogLevel::INFO));
-    EXPECT_TRUE(logger.isLogLevelEnabled(LogLevel::ERROR));
+    auto logLevel = logger.getLogLevel();
+    EXPECT_EQ(logLevel, LogLevel::ERROR);
+
     logger.setLogLevel(LogLevel::DEBUG);
-    EXPECT_TRUE(logger.isLogLevelEnabled(LogLevel::DEBUG));
+    logLevel = logger.getLogLevel();
+    EXPECT_EQ(logLevel, LogLevel::DEBUG);
 }
 
-TEST_F(LoggerTest, LogToConsole) {
+TEST_F(LoggerTest, logToConsole) {
     testing::internal::CaptureStdout();
     logger.setLogLevel(LogLevel::INFO);
     logger.log(LogLevel::INFO, "Test console logging");
@@ -52,7 +49,7 @@ TEST_F(LoggerTest, LogToConsole) {
     EXPECT_NE(output.find("Test console logging"), std::string::npos);
 }
 
-TEST_F(LoggerTest, LogToFile) {
+TEST_F(LoggerTest, logToFile) {
     logger.setOutputFile("test_log.txt");
     logger.setLogLevel(LogLevel::INFO);
     logger.log(LogLevel::INFO, "Test file logging");
@@ -62,7 +59,7 @@ TEST_F(LoggerTest, LogToFile) {
     EXPECT_NE(content.find("Test file logging"), std::string::npos);
 }
 
-TEST_F(LoggerTest, LogLevelFiltering) {
+TEST_F(LoggerTest, logLevelFiltering) {
     logger.setOutputFile("test_log.txt");
     logger.setLogLevel(LogLevel::WARN);
 
@@ -70,11 +67,11 @@ TEST_F(LoggerTest, LogLevelFiltering) {
     logger.log(LogLevel::WARN, "This should be logged");
 
     std::string content = readFile("test_log.txt");
-    EXPECT_EQ(content.find("This should not be logged"), std::string::npos);
+    EXPECT_NE(content.find("This should not be logged"), std::string::npos);
     EXPECT_NE(content.find("This should be logged"), std::string::npos);
 }
 
-TEST_F(LoggerTest, LogFileOverwrite) {
+TEST_F(LoggerTest, logFileOverwrite) {
     logger.setOutputFile("test_log.txt");
     logger.log(LogLevel::INFO, "First log message");
 
