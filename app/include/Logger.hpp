@@ -13,8 +13,6 @@ public:
 
     void setLogLevel(LogLevel level);
     LogLevel getLogLevel() const;
-
-    bool isLogLevelEnabled(LogLevel level) const;
     
     void setOutputFile(const std::string& filename);
 
@@ -27,6 +25,7 @@ private:
     LogLevel _currentLevel;
     std::ofstream _logFile;
 
+    bool isLogLevelChanged(LogLevel level) const;
     std::string logLevelToString(LogLevel level) const;
 };
 
