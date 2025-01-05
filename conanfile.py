@@ -35,8 +35,13 @@ class SimpleCPPConan(ConanFile):
         cmake.install()
     
     def package_info(self):
-        self.cpp_info.libs = ["logging"]
-        self.cpp_info.libdirs = ["lib"]
+        lib_dir = os.path.join(self.package_folder, "lib")
+        include_dir = os.path.join(self.package_folder, "include")
+        libs = ["logger"]
+
+        self.cpp_info.libdirs.append(lib_dir)
+        self.cpp_info.includedirs.append(include_dir)
+        self.cpp_info.libs = libs
     
     def export_sources(self):
         copy(self, "*", src=self.recipe_folder, dst=self.export_sources_folder)
