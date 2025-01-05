@@ -45,7 +45,3 @@ class SimpleCPPConan(ConanFile):
     
     def export_sources(self):
         copy(self, "*", src=self.recipe_folder, dst=self.export_sources_folder)
-
-        cmake_dir = os.path.join(self.recipe_folder, "../cmake")
-        if os.path.exists(cmake_dir):
-            copy(self, "*", src=cmake_dir, dst=os.path.join(self.export_sources_folder, "cmake"))
