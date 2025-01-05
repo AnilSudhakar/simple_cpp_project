@@ -1,3 +1,5 @@
 **/_build**
+test_package/build
 CMakeCache.txt
 CMakeFiles
+**/CMakeUserPresets.json

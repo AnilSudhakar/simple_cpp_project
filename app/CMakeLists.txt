@@ -2,13 +2,15 @@
 add_library(logger SHARED)
 
 target_sources(logger 
-    PUBLIC 
-        include/Logger.hpp
-        src/Logger.cpp
+    PRIVATE 
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/Logger.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Logger.cpp
     )
+
 target_include_directories(logger 
     PUBLIC 
-        include
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
     )
 
 target_compile_options(logger
@@ -27,5 +29,18 @@ target_compile_features(logger
         cxx_std_17
     )
 
-install(TARGETS logger DESTINATION lib)
-install(DIRECTORY include/ DESTINATION include)
+install(
+    TARGETS
+        logger
+    EXPORT
+        ${PROJECT_NAME}-EXPORT_GROUP
+    LIBRARY
+    DESTINATION
+        ${CMAKE_INSTALL_LIBDIR}
+)
+install(
+    DIRECTORY
+        include/
+    DESTINATION
+        ${CMAKE_INSTALL_INCLUDEDIR}
+)
