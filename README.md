@@ -86,7 +86,7 @@ This repository contains a simple C++ project demonstrating the setup with the f
    ```
 ---
 
-Once the package is pushed into the artifactory then it can be consumed as shown in this (sample_application)[https://github.com/AnilSudhakar/sample_application].
+Once the package is pushed into the artifactory then it can be consumed as shown in this [sample_application](https://github.com/AnilSudhakar/sample_application).
 
 ## Docker Setup
 
