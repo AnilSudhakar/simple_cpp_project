@@ -1,0 +1,7 @@
+@PACKAGE_INIT@
+
+include("${CMAKE_CURRENT_LIST_DIR}/simple_cpp_projectTargets.cmake")
+include(CMakeFindDependencyMacro)
+check_required_components(simple_cpp_project)
+
+find_dependency(GTest REQUIRED)
