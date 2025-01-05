@@ -58,7 +58,7 @@ TEST_F(LoggerTest, LogToFile) {
     logger.log(LogLevel::INFO, "Test file logging");
 
     std::string content = readFile("test_log.txt");
-    EXPECT_NE(content.find("[DEBUG]"), std::string::npos);
+    EXPECT_NE(content.find("[INFO]"), std::string::npos);
     EXPECT_NE(content.find("Test file logging"), std::string::npos);
 }
 
