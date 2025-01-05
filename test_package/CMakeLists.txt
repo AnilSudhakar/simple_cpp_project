@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION "3.22")
 
 project(packageTest LANGUAGES CXX)
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
+find_package(simple_cpp_project REQUIRED)
 list(APPEND CMAKE_FIND_ROOT_PATH ${CMAKE_MODULE_PATH})
 
 message(STATUS "CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")
