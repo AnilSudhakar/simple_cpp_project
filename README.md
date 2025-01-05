@@ -1,7 +1,7 @@
 # simple_cpp_project
 
 
-This repository contains a simple C++ project with the following features:
+This repository contains a simple C++ project demonstrating the setup with the following features:
 
 - Modular code structure with a simple logging library.
 - Unit tests for testing functionality.
@@ -38,7 +38,8 @@ This repository contains a simple C++ project with the following features:
 ├── run_unit_tests.sh    # Script to run unit tests
 ├── test_package         # Test package setup
 ├── tests                # Unit tests
-└── README.md            # Project documentation
+├── README.md            # Project documentation
+└── upload_package.sh    # upload conan package to Jfrog artifactory
 ```
 
 ---
@@ -78,26 +79,49 @@ This repository contains a simple C++ project with the following features:
    ./package.sh
    ```
 
+4. **Upload the conan package:**
+
+   ```bash
+   ./upload_package.sh
+   ```
 ---
 
 ## Docker Setup
 
 This project includes a Docker-based development setup. To use Docker:
 
-1. **Build the Docker Image:**
+1. **Pre-requiste install docker:**
+
+   ```bash
+    # Add Docker's official GPG key:
+    sudo apt-get update
+    sudo apt-get install ca-certificates curl
+    sudo install -m 0755 -d /etc/apt/keyrings
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+    # Add the repository to Apt sources:
+    echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update
+   ```
+
+2. **Build the Docker Image:**
 
    ```bash
    cd development_docker
    ./build_docker.sh
    ```
 
-2. **Run the Docker Container:**
+3. **Run the Docker Container:**
 
    ```bash
    ./run_docker.sh
    ```
 
-3. **Push docker image to Jfrog artifactory(optional)**
+4. **Push docker image to Jfrog artifactory(optional)**
 
    ```bash
    ./push_docker.sh
@@ -112,7 +136,6 @@ This project uses GitHub Actions for CI. The pipeline performs the following:
 1. Build the project using CMake.
 2. Run unit tests.
 3. Package the library.
-4. (Optional) Push Docker images to a container registry.
 
 ---
 
