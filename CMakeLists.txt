@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION "3.22")
 
-project(SimpleCppProject LANGUAGES CXX)
+project(simple_cpp_project LANGUAGES CXX)
 
 option(BUILD_TESTS "Builds tests available in the project" OFF)
 option(BUILD_PACKAGE "Builds the package" OFF)
