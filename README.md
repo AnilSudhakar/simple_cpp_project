@@ -68,7 +68,7 @@ This repository contains a simple C++ project demonstrating the setup with the f
    ```
 
 3. **Run Unit Tests:**
-
+    The unit-tests can be created as targets with all the necessary target set-up using the CMake function `add_unit_test()` which finds the gtest libraries and links against the test executable.
    ```bash
    ./run_unit_tests.sh
    ```
@@ -79,12 +79,14 @@ This repository contains a simple C++ project demonstrating the setup with the f
    ./package.sh
    ```
 
-4. **Upload the conan package:**
+5. **Upload the conan package:**
 
    ```bash
    ./upload_package.sh
    ```
 ---
+
+Once the package is pushed into the artifactory then it can be consumed as shown in this (sample_application)[https://github.com/AnilSudhakar/sample_application].
 
 ## Docker Setup
 
